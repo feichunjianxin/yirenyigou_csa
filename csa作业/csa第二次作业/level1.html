@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 使用object()构造函数创建
+        let obj0 = new Object()
+        obj0.name = "李华";
+        obj0.age = 20;
+        console.log(obj0);
+
+        //使用字面量创建
+        let obj1 = {
+            name: "李华",
+            age: 20
+        }
+        console.log(obj1);
+
+        //使用构造函数创建
+        function person() {
+            this.name = "李华";
+            this.age = "20";
+        }
+        let obj2 = new person;
+        console.log(obj2);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

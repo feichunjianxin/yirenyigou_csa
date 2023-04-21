@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        //函数返回值为跟新后数组的长度
+        function mypush(arr){
+            arr.splice(arr.length,0,"a","b","c");
+            return arr.length;
+        }
+        let arr = [1,2,3,4];
+        let len = mypush(arr);
+        console.log(arr);
+        console.log("len:",len);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
