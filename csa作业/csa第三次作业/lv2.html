@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        //以下均为自己的理解
+        //赋值：相当于两个对象同时引用同一块内存区域，其中一个改变会导致另一个改变
+        //浅拷贝：基本类型的值会复制，引用类型的值会拷贝其内存地址,改变目标对象的基本类型的值不会影响原对象，但改变引用对象会、
+        //深拷贝：开辟一块新的内存给目标对象，其的改变不会影响到原对象
+
+        //浅拷贝
+        //1、Object.assign()
+        // function test() {
+        //     let obj1 = { a: 1, b: 2, c: { d: 3 } };
+        //     let obj2 = Object.assign({}, obj1);
+        //     console.log(obj1);
+        //     console.log(obj2);
+
+        //     obj2.a = 11;
+        //     console.log(obj1);
+        //     console.log(obj2);
+
+        //     obj2.c.d = 33;
+        //     console.log(obj1);
+        //     console.log(obj2);
+        // }
+        // test();
+
+        //2、拓展运算符
+        // let obj1 = { a: 1, b: 2, c: { d: 3 } };
+        // let obj2 = { ...obj1 };
+        // console.log(obj1);
+        // console.log(obj2);
+
+        // obj2.a = 11;
+        // console.log(obj1);
+        // console.log(obj2);
+
+        // obj2.c.d = 33;
+        // console.log(obj1);
+        // console.log(obj2);
+
+
+        //深拷贝
+        //1、JSON.parse(JSON.stringify()) 用到的是序列化和反序列化（还没咋搞懂）
+        // let obj1 = { a: 1, b: 2, c: { d: 3 } };
+        // let obj2 = JSON.parse(JSON.stringify(obj1));
+        // console.log(obj1);
+        // console.log(obj2);
+
+        // obj2.a = 11;
+        // console.log(obj1);
+        // console.log(obj2);
+
+        // obj2.c.d = 33;
+        // console.log(obj1);
+        // console.log(obj2);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

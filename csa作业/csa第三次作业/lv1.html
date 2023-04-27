@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        //循环
+        function factorial(n) {
+            let fac = 1;
+            for (let i = 1; i <= n; i++) {
+                fac *= i;
+            }
+            return fac;
+        }
+        let x = 10;
+        console.log("循环");
+        console.log(`factorial(${x}) = ${factorial(x)}`);
+        //递归
+        function factorial1(n) {
+            if (n == 1) {
+                return 1;
+            }
+            else {
+                return n*factorial(n-1);
+            }
+        }
+        let x1 = 10;
+        console.log("递归");
+        console.log("factorial1(" + x1 + ") = " + factorial1(x1));
+        
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
