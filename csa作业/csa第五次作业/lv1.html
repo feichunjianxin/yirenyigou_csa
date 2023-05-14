@@ -6,33 +6,178 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-        // var funcs = []
-        // for (var i = 0; i < 10; i++) {
-        //     funcs.push((function (value) {
-        //         return function () {
-        //             console.log(value)
-        //         }
-        //     }(i)))
-        // }
-        // funcs.forEach(function (func) {
-        //     func()
-        // })
-
-        var funcs = [];
-        for (let i = 0; i < 10; i++) {
-            funcs.push(function () {
-                console.log(i)
-            })
-        }
-        funcs.forEach(function (func) {
-            func()
-        })
-    </script>
 </head>
 
-<body>
+<style>
+    div {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        margin-top: 10px;
+    }
 
+    .circle1 {
+        background-color: red;
+    }
+
+    .circle2 {
+        background-color: green;
+    }
+
+    .circle3 {
+        background-color: blue;
+    }
+</style>
+
+<body>
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+    <div class="circle3"></div>
 </body>
+
+<script>
+    const circle1 = document.querySelector(".circle1");
+    const circle2 = document.querySelector(".circle2");
+    const circle3 = document.querySelector(".circle3");
+
+    //方法一：settimeout和setinterval
+
+    circle1.style.marginLeft = "0px";
+    circle2.style.marginLeft = "0px";
+    circle3.style.marginLeft = "0px";
+    // setTimeout(function () {
+    //     setInterval(function () {
+    //         if (parseInt(circle1.style.marginLeft) < 300) {
+    //             circle1.style.marginLeft = parseInt(circle1.style.marginLeft) + 100 + 'px';
+    //         }
+    //         else {
+    //             clearInterval();
+    //         }
+    //     }, 1000)
+    // }, 0)
+
+    // setTimeout(function () {
+    //     setInterval(function () {
+    //         if (parseInt(circle2.style.marginLeft) < 300) {
+    //             circle2.style.marginLeft = parseInt(circle2.style.marginLeft) + 100 + 'px';
+    //         }
+    //         else {
+    //             clearInterval();
+    //         }
+    //     }, 1000)
+    // }, 3000)
+
+    // setTimeout(function () {
+    //     setInterval(function () {
+    //         if (parseInt(circle3.style.marginLeft) < 300) {
+    //             circle3.style.marginLeft = parseInt(circle3.style.marginLeft) + 100 + 'px';
+    //         }
+    //         else {
+    //             clearInterval();
+    //         }
+    //     }, 1000)
+    // }, 6000)
+
+    //方法二：promise
+
+    // let p1 = new Promise((resolve, reject) => {
+    //     setTimeout(function () {
+    //         setInterval(function () {
+    //             if (parseInt(circle1.style.marginLeft) < 300) {
+    //                 circle1.style.marginLeft = parseInt(circle1.style.marginLeft) + 100 + 'px';
+    //             }
+    //             else {
+    //                 clearInterval();
+    //             }
+    //         }, 1000)
+    //     }, 0)
+    //     resolve(p2);
+    // })
+
+    // let p2 = new Promise((resolve, reject) => {
+    //     setTimeout(function () {
+    //         setInterval(function () {
+    //             if (parseInt(circle2.style.marginLeft) < 300) {
+    //                 circle2.style.marginLeft = parseInt(circle2.style.marginLeft) + 100 + 'px';
+    //             }
+    //             else {
+    //                 clearInterval();
+    //             }
+    //         }, 1000)
+    //     }, 3000)
+    //     resolve(p3);
+    // })
+
+    // let p3 = new Promise((resolve, reject) => {
+    //     setTimeout(function () {
+    //         setInterval(function () {
+    //             if (parseInt(circle3.style.marginLeft) < 300) {
+    //                 circle3.style.marginLeft = parseInt(circle3.style.marginLeft) + 100 + 'px';
+    //             }
+    //             else {
+    //                 clearInterval();
+    //             }
+    //         }, 1000)
+    //     }, 6000)
+    // })
+
+    // p1()
+    // .then((x)=>{
+    //     x();
+    // })
+    // .then((x)=>{
+    //     x();
+    // })
+
+    //方法三：async，await
+    
+    let p1 = new Promise((resolve, reject) => {
+        setTimeout(function () {
+            setInterval(function () {
+                if (parseInt(circle1.style.marginLeft) < 300) {
+                    circle1.style.marginLeft = parseInt(circle1.style.marginLeft) + 100 + 'px';
+                }
+                else {
+                    clearInterval();
+                }
+            }, 1000)
+        }, 0)
+        resolve(p2);
+    })
+
+    let p2 = new Promise((resolve, reject) => {
+        setTimeout(function () {
+            setInterval(function () {
+                if (parseInt(circle2.style.marginLeft) < 300) {
+                    circle2.style.marginLeft = parseInt(circle2.style.marginLeft) + 100 + 'px';
+                }
+                else {
+                    clearInterval();
+                }
+            }, 1000)
+        }, 3000)
+        resolve(p3);
+    })
+
+    let p3 = new Promise((resolve, reject) => {
+        setTimeout(function () {
+            setInterval(function () {
+                if (parseInt(circle3.style.marginLeft) < 300) {
+                    circle3.style.marginLeft = parseInt(circle3.style.marginLeft) + 100 + 'px';
+                }
+                else {
+                    clearInterval();
+                }
+            }, 1000)
+        }, 6000)
+    })
+
+    async function demo(){
+        let step1 = await p1();
+        let step2 = await p2();
+        let step3 = await p3();
+    }
+    demo();
+</script>
 
 </html>

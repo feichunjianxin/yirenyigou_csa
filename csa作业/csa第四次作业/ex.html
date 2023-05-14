@@ -11,14 +11,21 @@
         // var PI = "a";
         // if (true) {const PI = "3.1415926";
         //     console.log(PI); // 未初始化PI之前就使用PI
-            
+
         //     //ES6 明确规定，代码块内如果存在 let 或者 const，代码块会对这些命令声明的变量从块的开始就形成一
         //     // 个封闭作用域。代码块内，在声
         //     // 明变量 PI 之前使用它会报错
         // }
 
-        let { baz } = { baz : 'ddd' };
-        console.log(baz);
+        console.log(1);
+        document.onclick = function () {
+            console.log('click');
+        }
+        console.log(2);
+        setTimeout(function () {
+            console.log(3);
+        }, 3000)
+
     </script>
 </head>
 
