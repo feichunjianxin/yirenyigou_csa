@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        list-style: none;
+    }
+
+    #banner {
+        width: 400px;
+        height: 200px;
+        border: 1px #999 solid;
+        overflow: hidden;
+        position: relative;
+        margin: 5px auto;
+    }
+
+    #imglist {
+        width: 2000px;
+        height: 200px;
+    }
+
+    #imglist img {
+        width: 400px;
+        height: 200px;
+        float: left;
+    }
+
+    .prev {
+        background-color: #666;
+        width: 10px;
+        height: 15px;
+        color: #fff;
+        text-align: center;
+        line-height: 15px;
+        position: absolute;
+        left: 3px;
+        top: 45%;
+        cursor: pointer;
+    }
+
+    #prev {
+        float: left;
+    }
+
+    .next {
+        background-color: #666;
+        width: 10px;
+        height: 15px;
+        color: #fff;
+        text-align: center;
+        line-height: 15px;
+        position: absolute;
+        right: 3px;
+        top: 45%;
+        cursor: pointer;
+    }
+
+    #next {
+        float: right;
+    }
+
+    #icolist {
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+    }
+
+    #icolist li {
+        font-size: 10px;
+        background-color: #666;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 15px;
+        color: #fff;
+        float: left;
+        margin-left: 2px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div id="banner">
+        <ul id="imglist">
+            <li><img src="./imgs/OIP-C.jfif" alt=""></li>
+            <li><img src="./imgs/OIP-C (1).jfif" alt=""></li>
+            <li><img src="./imgs/OIP-C (2).jfif" alt=""></li>
+            <li><img src="./imgs/OIP-C (3).jfif" alt=""></li>
+            <li><img src="./imgs/OIP-C.jfif" alt=""></li>
+        </ul>
+        <ul id=icolist>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <!-- 不知道为啥子变红了，还有这里的span元素浮动方向没弄懂 -->
+        <div class="prev"><span id="prev"><</span></div>
+        <div class="next"><span id="next">></span></div>
+    </div>
+
+    <script>
+        var imglist = document.querySelector('#imglist');
+        var eprev = document.querySelector('.prev');
+        var enext = document.querySelector('.next');
+        var esico = document.getElementById('icolist').getElementsByTagName('li');
+        var eicolist = document.querySelector('#icolist');
+        var eimglist = document.querySelector('#imglist');
+        var left = 0;
+        var timer;
+        run();
+        function run() {
+            if (left <= -1600) {
+                left = 0;
+            }
+            var m = Math.floor(-left / 400);
+            imglist.style.marginLeft = left + 'px';
+            var n = (left % 400 == 0) ? 1200 : 30
+            left -= 10;
+            timer = setTimeout(run, n);
+            icochange(m);
+        }
+        function imgchange(n) {
+            let lf = -(n * 400);
+            imglist.style.marginLeft = lf + 'px';
+            left = lf;
+        }
+        eprev.onclick = function () {
+            let prevgo = Math.floor(-left / 400) - 1;
+            if (prevgo == -1) {
+                prevgo = 3;
+            }
+            imgchange(prevgo);
+        }
+        enext.onclick = function () {
+            let nextgo = Math.floor(-left / 400) + 1;
+            if (nextgo == 4) {
+                nextgo = 0;
+            }
+            imgchange(nextgo);
+        }
+        // esico.lenght无效，所以这里用4来代替
+        function icochange(m) {
+            for (let index = 0; index < 4; index++) {
+                esico[index].style.backgroundColor = '';
+            }
+            if (m < 4) {
+                esico[m].style.backgroundColor = 'red';
+            }
+        }
+        eicolist.onclick = function(){
+            var tg = event.target;
+            let ico = tg.innerHTML - 1;
+            imgchange(ico);
+            icochange(ico);
+        }
+        // 这下面两个函数实际效果不咋好，当鼠标在imglist上面移动时，它的判定有问题（当然，我没去仔细看这两个事件的作用）
+        imglist.onmouseover = function(){
+            clearTimeout(timer);
+        }
+        imglist.onmouseout = function(){
+            run();
+        }
+    </script>
+</body>
+
+</html>
